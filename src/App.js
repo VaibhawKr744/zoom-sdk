@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './App.css';
 import { ZoomMtg } from '@zoomus/websdk';
@@ -11,21 +11,28 @@ ZoomMtg.prepareWebSDK();
 ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
+var url_string = window.location.href
+var url = new URL(url_string);
+var meetingNum = url.searchParams.get("meetingNumber");
+var pass = url.searchParams.get("passWord");
+var name = url.searchParams.get("userName");
+var leaveurl = url.searchParams.get("leaveurl");
+
 function App() {
 
-  var authEndpoint = ''
-  var sdkKey = ''
-  var meetingNumber = '123456789'
-  var passWord = ''
+  var authEndpoint = 'https://dev.clapingo.com/api/session/zoomSignature'
+  var sdkKey = 'lAzXXLSJQyKbYI1xZwqQOw'
+  var meetingNumber = meetingNum
+  var passWord = pass
   var role = 0
-  var userName = 'React'
+  var userName = name
   var userEmail = ''
   var registrantToken = ''
   var zakToken = ''
-  var leaveUrl = 'http://localhost:3000'
+  var leaveUrl = leaveurl
 
-  function getSignature(e) {
-    e.preventDefault();
+  function getSignature() {
+    // e.preventDefault();
 
     fetch(authEndpoint, {
       method: 'POST',
@@ -74,15 +81,18 @@ function App() {
     })
   }
 
-  return (
-    <div className="App">
-      <main>
-        <h1>Zoom Meeting SDK Sample React</h1>
+  useEffect(() => {
 
-        <button onClick={getSignature}>Join Meeting</button>
-      </main>
-    </div>
-  );
+    const audioBtn = document.getElementsByClassName("media-preview-icon-mic-off");
+    // audioBtn.click();
+
+
+    setTimeout(() => {
+      getSignature();
+    }, 2000);
+  }, []);
+
+  return <></>
 }
 
 export default App;

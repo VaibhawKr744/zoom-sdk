@@ -14,9 +14,9 @@ ZoomMtg.i18n.reload('en-US');
 var url_string = window.location.href
 var url = new URL(url_string);
 var meetingNum = url.searchParams.get("meetingNumber");
-var pass = url.searchParams.get("password");
-var name = url.searchParams.get("name");
-var leaveurl = url.searchParams.get("leaveUrl");
+var pass = url.searchParams.get("passWord");
+var name = url.searchParams.get("userName");
+var leaveurl = url.searchParams.get("leaveurl");
 console.log(meetingNum, pass, name, leaveurl)
 function App() {
 

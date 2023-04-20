@@ -14,10 +14,17 @@ ZoomMtg.i18n.reload('en-US');
 var url_string = window.location.href
 var url = new URL(url_string);
 var meetingNum = url.searchParams.get("meetingNumber");
+<<<<<<< HEAD
 var pass = url.searchParams.get("password");
 var name = url.searchParams.get("name");
 var leaveurl = url.searchParams.get("leaveUrl");
 console.log(meetingNum, pass, name, leaveurl)
+=======
+var pass = url.searchParams.get("passWord");
+var name = url.searchParams.get("userName");
+var leaveurl = url.searchParams.get("leaveurl");
+
+>>>>>>> 48fab055aa4c0239928182c1aa1303728de8e001
 function App() {
 
   var authEndpoint = 'https://dev.clapingo.com/api/session/zoomSignature'
